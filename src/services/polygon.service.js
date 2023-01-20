@@ -1,17 +1,14 @@
-import * as testPoint from 'robust-point-in-polygon'
+import robustPoint from 'robust-point-in-polygon'
 import { getObject } from "../repositories/s3.repository.js";
 
 export async function getGeoJson(){
-    try{
-        const geojson = await getObject('xcrime-ml-ponal-dev-mdp', 'UnidadesBase/UnidadesBase.geojson');
-        return JSON.parse(geojson.Body.toString());
-    }catch(err){
-        next(err);
-    }
+    const geojson = await getObject('xcrime-ml-ponal-dev-mdp', 'UnidadesBase/UnidadesBase.geojson');
+    return JSON.parse(geojson);
 }
 
 export const isPointInPolygon = (point, polygon) => {
-    return testPoint(polygon, point) <= 0
+    const result = robustPoint(polygon, point);
+    return result <= 0;
 }
 
 export function convertMultiPolygonToPolygon(geoJSON) {
