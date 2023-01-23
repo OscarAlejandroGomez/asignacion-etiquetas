@@ -1,8 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import findPointRouter from './controllers/findPoint.controller.js';
-import { PORT } from './config/env.config.js'
-import { InvalidObjectState } from '@aws-sdk/client-s3';
+import { PORT } from './config/env.config.js';
 
 const app = express();
 const port = PORT || 3000;
