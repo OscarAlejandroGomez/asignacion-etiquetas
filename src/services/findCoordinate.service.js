@@ -3,7 +3,9 @@ import { getGeoJson, isPointInPolygon, convertMultiPolygonToPolygon } from "./po
 export async function findLabel(payload){
     const { latitud, longitud } = payload;
 
-    const geojson = global.GeoJson ?? await getGeoJson();
+    if(!global.GeoJson) global.GeoJson = await getGeoJson();
+
+    const geojson = global.GeoJson;
     
     const geojsonPolygon = convertMultiPolygonToPolygon(geojson);
 
