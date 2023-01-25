@@ -1,8 +1,10 @@
 import robustPoint from 'robust-point-in-polygon'
 import { getObject } from "../repositories/s3.repository.js";
+import { S3_NAME, POLYGONS_KEY } from '../config/env.config.js';
 
 export async function getGeoJson(){
-    const geojson = await getObject('xcrime-ml-ponal-dev-mdp', 'UnidadesBase/UnidadesBase.geojson');
+    const geojson = await getObject(S3_NAME, POLYGONS_KEY);
+    console.log("Retrieved GeoJson")
     return JSON.parse(geojson);
 }
 

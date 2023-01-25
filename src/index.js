@@ -10,7 +10,7 @@ const port = PORT || 3000;
 global.GeoJson = await getGeoJson();
 
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan('short'));
 
 app.use('/findLabel', findPointRouter );
 
