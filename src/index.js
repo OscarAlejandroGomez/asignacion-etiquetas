@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import findPointRouter from './controllers/findPoint.controller.js';
+import healthCheckRouter from './controllers/healthCheck.controller.js';
 import { PORT } from './config/env.config.js';
 import { getGeoJson, convertMultiPolygonToPolygon } from './services/polygon.service.js';
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(morgan('short'));
 
 app.use('/findLabel', findPointRouter );
+app.use('/health', healthCheckRouter );
 
 app.use((err, req, res, next) => {
     if(err.Code){
